@@ -23,6 +23,9 @@
     <DebugSymbols>False</DebugSymbols>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
   <ItemGroup>
     <None Update="protocol.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -46,8 +49,7 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net47'">
-    <PackageReference Include="Replicon.Cryptography.SCrypt">
-      <Version>1.1.6.13</Version>
+    <PackageReference Include="Replicon.Cryptography.SCrypt" Version="1.1.6.13">
     </PackageReference>
   </ItemGroup>
 
