@@ -37,6 +37,7 @@ namespace Neo.Core
         /// 后备记账人列表
         /// </summary>
         public static readonly ECPoint[] StandbyValidators = Settings.Default.StandbyValidators.OfType<string>().Select(p => ECPoint.DecodePoint(p.HexToBytes(), ECCurve.Secp256r1)).ToArray();
+        public static readonly ECPoint[] NEOOwner = Settings.Default.NeoOwner != null ? Settings.Default.NeoOwner.OfType<string>().Select(p => ECPoint.DecodePoint(p.HexToBytes(), ECCurve.Secp256r1)).ToArray() : StandbyValidators;
 
         /// <summary>
         /// Return true if haven't got valid handle
@@ -72,6 +73,7 @@ namespace Neo.Core
             Scripts = new Witness[0]
         };
 #pragma warning restore CS0612
+
 
         /// <summary>
         /// 创世区块
@@ -110,7 +112,7 @@ namespace Neo.Core
                         {
                             AssetId = GoverningToken.Hash,
                             Value = GoverningToken.Amount,
-                            ScriptHash = Contract.CreateMultiSigRedeemScript(StandbyValidators.Length / 2 + 1, StandbyValidators).ToScriptHash()
+                            ScriptHash = NEOOwner.Length > 1 ? Contract.CreateMultiSigRedeemScript(NEOOwner.Length / 2 + 1, NEOOwner).ToScriptHash() : Contract.CreateSignatureRedeemScript(NEOOwner[0]).ToScriptHash()
                         }
                     },
                     Scripts = new[]

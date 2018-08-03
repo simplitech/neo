@@ -11,6 +11,7 @@ namespace Neo
         public uint Magic { get; private set; }
         public byte AddressVersion { get; private set; }
         public string[] StandbyValidators { get; private set; }
+        public string[] NeoOwner { get; private set; }
         public string[] SeedList { get; private set; }
         public IReadOnlyDictionary<TransactionType, Fixed8> SystemFee { get; private set; }
         public uint SecondsPerBlock { get; private set; }
