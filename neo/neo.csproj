@@ -38,7 +38,6 @@
     <PackageReference Include="Microsoft.AspNetCore.WebSockets" Version="2.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.0.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.1" />
-    <PackageReference Include="Neo.VM" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net47' ">
@@ -46,9 +45,11 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net47'">
-    <PackageReference Include="Replicon.Cryptography.SCrypt">
-      <Version>1.1.6.13</Version>
+    <PackageReference Include="Replicon.Cryptography.SCrypt" Version="1.1.6.13">
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\neo-vm\src\neo-vm\neo-vm.csproj" />
+  </ItemGroup>
 </Project>
