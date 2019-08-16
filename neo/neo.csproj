@@ -46,11 +46,9 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net47'">
-    <PackageReference Include="Replicon.Cryptography.SCrypt" Version="1.1.6.13">
+    <PackageReference Include="Replicon.Cryptography.SCrypt">
+      <Version>1.1.6.13</Version>
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\neo-vm\src\neo-vm\neo-vm.csproj" />
-  </ItemGroup>
 </Project>
