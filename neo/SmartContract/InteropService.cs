@@ -72,6 +72,7 @@ namespace Neo.SmartContract
             return true;
         }
 
+        //Test
         public static long GetPrice(uint hash, RandomAccessStack<StackItem> stack)
         {
             return methods[hash].GetPrice(stack);
