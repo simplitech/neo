@@ -1,11 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <Copyright>2015-2019 The Neo Project</Copyright>
     <AssemblyTitle>Neo</AssemblyTitle>
     <Version>3.0.0-preview1</Version>
     <Authors>The Neo Project</Authors>
-    <TargetFrameworks>netstandard2.0;net47</TargetFrameworks>
+    <TargetFrameworks>net471;netstandard2.0</TargetFrameworks>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <AssemblyName>Neo</AssemblyName>
     <PackageId>Neo</PackageId>
@@ -36,6 +36,18 @@
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net47'">
     <PackageReference Include="Replicon.Cryptography.SCrypt" Version="1.1.6.13" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Network\RPC\Server\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Network\RPC\Server\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Network\RPC\Server\**" />
   </ItemGroup>
 
 </Project>
