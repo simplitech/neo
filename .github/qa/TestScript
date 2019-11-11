@@ -1,0 +1,10 @@
+
+
+#### Test setup
+1.  Checkout to tested branch  
+2.  Add a `Console.WriteLine` at the beggining of your program.
+    1. This used to ensure that you are running the correct source code version.
+3. Add a `Console.WriteLine` before and after important changes.
+    1. This is used to ensure that you are reaching the parts of the code you need to test.
+4. If testing  Neo Library, Neo VM, Neo Plugins use  `neo-cli`. 
+5. If testing `neo-devpack-dotnet`, deploy and test your contract using a local node.
