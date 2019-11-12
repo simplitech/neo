@@ -77,7 +77,10 @@ namespace Neo.Plugins
 
         protected IConfigurationSection GetConfiguration()
         {
-            return new ConfigurationBuilder().AddJsonFile(ConfigFile, optional: true).Build().GetSection("PluginConfiguration");
+            return new ConfigurationBuilder()
+                .AddJsonFile(ConfigFile, optional: true)
+                .Build()
+                .GetSection("PluginConfiguration");
         }
 
         internal static void LoadPlugins(NeoSystem system)
