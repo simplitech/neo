@@ -64,7 +64,7 @@
   <a href="https://www.youtube.com/channel/UCl1AwEDN0w5lTmfJEMsY5Vw/videos">
       <img
       src=".github/images/youtube-logo.png"
-      width="50px">
+      width="32px">
   </a>
   &nbsp;
   <!--How to get a link? -->
@@ -92,9 +92,8 @@
 4. [Status](#status)
 5. [Reference implementations](#reference-implementations)
 6. [Opening an issue](#opening-a-new-issue)  
-8. [Bounty program](#bounty-program)
-9. [Articles and blogs](#fourth-examplehttpwwwfourthexamplecom)
-10. [How to contribute](#fourth-examplehttpwwwfourthexamplecom)
+7. [Bounty program](#bounty-program)
+8. [How to contribute](#how-to-contribute)
 
 ## Overview
 Neo is a blockchain technology built using C# that levereages smart contracts to autonomumously manage digital assets. Using dBFT 2.0 as consensus mechanism, Neo can achieves single block finality in 15 seconds without forking.   
@@ -212,32 +211,8 @@ You can also compile LevelDB from [source](https://github.com/google/leveldb) an
         libsqlite3-dev \
         libunwind8-dev 
     ```
-    <!-- *Check out our [Dockerhub]() for more linux examples.* -->
 
-<!-- 6. Use the RPC Client:
-    ```CSharp
-    var rpcClient = new RpcClient("http://seed1t.neo.org:20332");
-    var block = rpcClient.GetBlock(0);
-    Console.WriteLine("Block: " + block.Block.Hash);
-    ``` -->
-<!-- 2. (Optional) Run a local node:  
-    You can use plugins for the most common use cases. If you think we need to add a new plugin please [open a new issue]().
-    ```CSharp
-    private void Start()
-    {
-        store = new LevelDBStore(Path.GetFullPath(Settings.Default.Paths.Chain));
-        system = new NeoSystem(store);
-        system.StartNode(new ChannelsConfig
-        {
-            Tcp = new IPEndPoint(IPAddress.Any, Settings.Default.P2P.Port),
-            WebSocket = new IPEndPoint(IPAddress.Any, Settings.Default.P2P.WsPort),
-            MinDesiredConnections = Settings.Default.P2P.MinDesiredConnections,
-            MaxConnections = Settings.Default.P2P.MaxConnections,
-            MaxConnectionsPerAddress = Settings.Default.P2P.MaxConnectionsPerAddress
-        });
-    }
-    ```
-    *Visit [neo-cli]() for more code examples.* -->
+*Visit [neo-cli](https://github.com/neo-project/neo-cli) use case.* 
 
 #### Using neo-cli releases
 Neo-cli is a full node with wallet capabilities. It also supports RPC endpoints allowing it to be managed remotely.  
@@ -254,25 +229,6 @@ Neo-cli is a full node with wallet capabilities. It also supports RPC endpoints 
 
 5. Use `help` to see the command list.
 
-<!-- #### Running a Neo node using Docker
-You can run Neo using neo-cli inside a docker container.  
-
-1. Pull one of our base images: 
-    ```bash
-    docker pull neofoundation/neo3:testnet-slim-centos7
-    ```
-2. Run it exposing the required ports and a volume to store persistent data:
-    ```
-    docker run -p 20332-20336:20332-20336 -v persistentData:/neo-cli/persistentData neofoundation/neo3:testnet-slim-centos7
-    ``` -->
-
-
-
-<!-- #### Using a light-wallet
-A light wallet is the easiest way to interact with the Neo blockchain. If you are only interested in use Neo dApps and not build one, a light-wallet may be the best option for you.  
-For Neo 3 (development), use [Neo3-preview.com](https://neo3-preview.com/) (community supported).  
-
-If you are looking use Neo with real assets, find your prefered wallet [here](https://neo.org/wallets). -->
 
 ## Status
 <p>
@@ -294,11 +250,11 @@ If you are looking use Neo with real assets, find your prefered wallet [here](ht
 #### Reference implementations
 Code references are provided for all platform building blocks. Tha includes the base library, the VM, a command line application and the compiler. Plugins are also included to easily extend Neo functinalities.
 
-* [**neo:**](https://github.com/neo-project/neo/tree/master-2.x) Neo core library, contains base classes, including ledger, p2p and IO modules.
-* [neo-vm:](https://github.com/neo-project/neo-vm/tree/master-2.x) Neo Virtual Machine is a decoupled VM that Neo uses to execute its scripts. It also uses the `InteropService` layer to extend its functionalities.
-* [neo-cli:](https://github.com/neo-project/neo-cli/tree/master-2.x) Neo Command Line Interface is an executable that allows you to run a Neo node using the command line. 
-* [neo-plugins:](https://github.com/neo-project/neo-plugins/tree/master-2.x) Neo plugin system is the default way to extend neo features. If a feature is not mandatory for Neo functionality, it will probably be implemented as a Plugin.
-* [neo-devpack-dotnet:](https://github.com/neo-project/neo-devpack-dotnet/tree/master-2.x) These are the official tools used to convert a C# smart-contract into a *neo executable file*.
+* [**neo:**](https://github.com/neo-project/neo/tree/) Neo core library, contains base classes, including ledger, p2p and IO modules.
+* [neo-vm:](https://github.com/neo-project/neo-vm/) Neo Virtual Machine is a decoupled VM that Neo uses to execute its scripts. It also uses the `InteropService` layer to extend its functionalities.
+* [neo-cli:](https://github.com/neo-project/neo-cli/) Neo Command Line Interface is an executable that allows you to run a Neo node using the command line. 
+* [neo-plugins:](https://github.com/neo-project/neo-plugins/) Neo plugin system is the default way to extend neo features. If a feature is not mandatory for Neo functionality, it will probably be implemented as a Plugin.
+* [neo-devpack-dotnet:](https://github.com/neo-project/neo-devpack-dotnet/) These are the official tools used to convert a C# smart-contract into a *neo executable file*.
 
 #### Opening a new issue
 Please feel free to create new issues in our repository. We encourage you to use one of our issue templates when creating a new issue.  
