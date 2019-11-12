@@ -23,8 +23,6 @@
   <a href="https://github.com/neo-project/neo-devpack-dotnet">Neo DevPack</a>
   ·
   <a href="https://github.com/neo-project/neo-cli">Neo CLI</a>
-  ·
-  <a href="https://github.com/neo-project/neo-gui">Neo GUI</a>
 </p>
 <p align="center">
   <a href="https://twitter.com/neo_blockchain">
@@ -66,7 +64,7 @@
   <a href="https://www.youtube.com/channel/UCl1AwEDN0w5lTmfJEMsY5Vw/videos">
       <img
       src=".github/images/youtube-logo.png"
-      width="50px">
+      width="32px">
   </a>
   &nbsp;
   <!--How to get a link? -->
@@ -85,34 +83,21 @@
 
 
 ## Table of Contents
-1. [Overview](#example)
-1. [Features](#example)
-2. [Quickstart](#example2)
-    1. [Using for smart-contract development](#smart-contract)
-    1. [Using neo library](#smart-contract)
-    1. [Using with Unity]()
-    2. [Using neo-cli releases](#third-example)
-    3. [Using docker](#third-example)
-    3. [Using plugins]()
-    3. [Writing a plugin](#third-example)
-    3. [Running a single node blockchain]()
-4. [Status](#fourth-examplehttpwwwfourthexamplecom)
-    1. [Repository status]()
-    2. [Development progress]()
-5. [Neo 3](#fourth-examplehttpwwwfourthexamplecom)
-    1. [Differences between Neo 2 and Neo 3](#fourth-examplehttpwwwfourthexamplecom)
-    3. [Neo 3 Explorer](#explorer)
-    3. [Daily builds](#daily-builds)
-6. [Opening a new issue](#)
-5. [Requesting new features](#fourth-examplehttpwwwfourthexamplecom)
-6. [Reporting a bug](#fourth-examplehttpwwwfourthexamplecom)
-5. [Developer support]()
-5. [Bounty program]()
-7. [Articles and blogs](#fourth-examplehttpwwwfourthexamplecom)
-7. [How to contribute](#fourth-examplehttpwwwfourthexamplecom)
+1. [Overview](#overview)
+1. [Features](#features)
+2. [Quickstart](#quick-start)
+    1. [Using for smart-contract development](#building-a-smart-contract)
+    1. [Using neo library](#using-neo-library)
+    3. [Using neo-cli releases](#using-neo-cli-releases)
+4. [Status](#status)
+5. [Reference implementations](#reference-implementations)
+6. [Opening an issue](#opening-a-new-issue)  
+7. [Bounty program](#bounty-program)
+8. [How to contribute](#how-to-contribute)
 
 ## Overview
-Neo is a blockchain technology built using C# that levereages smart contracts to autonomumously manage digital assets. Using dBFT 2.0 as consensus mechanism, Neo can achieves single block finality in 15 seconds without forking. 
+Neo is a blockchain technology built using C# that levereages smart contracts to autonomumously manage digital assets. Using dBFT 2.0 as consensus mechanism, Neo can achieves single block finality in 15 seconds without forking.   
+Neo is compatible with .NET Core 3.0 and .NET Standard 2.1.
 
 To learn more about NEO, please read the White Paper:  
 - [English](https://docs.neo.org/en-us/whitepaper.html)  
@@ -130,8 +115,8 @@ These are a few features Neo has:
   - Python, Typescript and Go Smart Contracts provided by community projects.
 - **[Unity support](https://github.com/neo-ngd/NEO3-Development-Guide/tree/master/en/SmartContract)**
   - Neo can be used to create your game in the blockchain.
-- **[Debugger support]()**
-  - Breakpoints, variable and storage inspection using Visual Studio Code.
+- **[Neo Blockchain Toolkit for .NET]()**
+  - Developer tools, supporting easy smart-contract development with debugging support using Visual Studio Code.
 - **[Plugin system]()**
   - Used to extend Neo functinalities, the plugin system allow developers to easily add new features to their nodes.
 - **[Native contracts](https://medium.com/neo-smart-economy/native-contracts-in-neo-3-0-e786100abf6e)**
@@ -149,9 +134,12 @@ These are a few features Neo has:
 
 ## Quick Start
 
-#### Building a sample smart-contract
-You need to use [neo-devpack-dotnet](https://github.com/neo-project/neo-devpack-dotnet) if you want to build smart contracts.
+#### Building a smart-contract
+Neo reference implementation offers C# smart-contract support. The code is first compiled to MSIL and subsequentially compiled to a *neo executable file (nef)* 
 
+*Suggestion: Please visit [Neo Blockchain Toolbox](https://github.com/neo-project/neo-blockchain-toolkit) for a complete setup.*
+
+### Using source code
 1. Clone https://github.com/neo-project/neo-devpack-dotnet  
 2.  Create a new .NET class library solution for your smart-contract.  
 3.  Open the project and add   `Neo.SmartContract.Framework.csproj` and `Neo.Compiler.MSIL.csproj` to your solution (inside repo from step 1).   
@@ -175,12 +163,12 @@ You need to use [neo-devpack-dotnet](https://github.com/neo-project/neo-devpack-
 
 7. Build `Neo.SmartContract.Framework.csproj` project. Check where neon.dll is saved, example:  
     ```
-    C:\Users\ricar\Workspace\readme-test\neo-devpack-dotnet\src\Neo.Compiler.MSIL\bin\Debug\netcoreapp2.0\neon.dll
+    C:\Users\neo\Workspace\readme-test\neo-devpack-dotnet\src\Neo.Compiler.MSIL\bin\Debug\netcoreapp3.0\neon.dll
     ```
 8. Add a post build event to your smart-contract project:
 
     ```
-    dotnet  C:\Users\ricar\Workspace\readme-test\neo-devpack-dotnet\src\Neo.Compiler.MSIL\bin\Debug\netcoreapp2.0\neon.dll $(TargetPath)
+    dotnet  C:\Users\neo\Workspace\readme-test\neo-devpack-dotnet\src\Neo.Compiler.MSIL\bin\Debug\netcoreapp3.0\neon.dll $(TargetPath)
     ```
 
 9. Verify if the contract was sucessfully compiled:
@@ -192,7 +180,7 @@ You need to use [neo-devpack-dotnet](https://github.com/neo-project/neo-devpack-
     2>SUCC
     ```
 
-#### Using Neo 3 .NET blockchain library 
+#### Using Neo library 
 Use this to run a node or send commands to the network.  
 This is how you should use Neo. If you can't use C#, consider using RPC endpoints with [neo-cli](https://github.com/neo-project/neo-cli).  
 
@@ -223,34 +211,10 @@ You can also compile LevelDB from [source](https://github.com/google/leveldb) an
         libsqlite3-dev \
         libunwind8-dev 
     ```
-    *Check out our [Dockerhub]() for more linux examples.*
 
-6. Use the RPC Client:
-    ```CSharp
-    var rpcClient = new RpcClient("http://seed1t.neo.org:20332");
-    var block = rpcClient.GetBlock(0);
-    Console.WriteLine("Block: " + block.Block.Hash);
-    ```
-2. (Optional) Run a local node:  
-    You can use plugins for the most common use cases. If you think we need to add a new plugin please [open a new issue]().
-    ```CSharp
-    private void Start()
-    {
-        store = new LevelDBStore(Path.GetFullPath(Settings.Default.Paths.Chain));
-        system = new NeoSystem(store);
-        system.StartNode(new ChannelsConfig
-        {
-            Tcp = new IPEndPoint(IPAddress.Any, Settings.Default.P2P.Port),
-            WebSocket = new IPEndPoint(IPAddress.Any, Settings.Default.P2P.WsPort),
-            MinDesiredConnections = Settings.Default.P2P.MinDesiredConnections,
-            MaxConnections = Settings.Default.P2P.MaxConnections,
-            MaxConnectionsPerAddress = Settings.Default.P2P.MaxConnectionsPerAddress
-        });
-    }
-    ```
-    *Visit [neo-cli]() for more code examples.*
+*Visit [neo-cli](https://github.com/neo-project/neo-cli) use case.* 
 
-#### Running a Neo node using neo-cli
+#### Using neo-cli releases
 Neo-cli is a full node with wallet capabilities. It also supports RPC endpoints allowing it to be managed remotely.  
 
 1. Download neo-cli from the release page
@@ -265,25 +229,6 @@ Neo-cli is a full node with wallet capabilities. It also supports RPC endpoints 
 
 5. Use `help` to see the command list.
 
-#### Running a Neo node using Docker
-You can run Neo using neo-cli inside a docker container.  
-
-1. Pull one of our base images: 
-    ```bash
-    docker pull neofoundation/neo3:testnet-slim-centos7
-    ```
-2. Run it exposing the required ports and a volume to store persistent data:
-    ```
-    docker run -p 20332-20336:20332-20336 -v persistentData:/neo-cli/persistentData neofoundation/neo3:testnet-slim-centos7
-    ```
-
-
-
-#### Using a light-wallet
-A light wallet is the easiest way to interact with the Neo blockchain. If you are only interested in use Neo dApps and not build one, a light-wallet may be the best option for you.  
-For Neo 3 (development), use [Neo3-preview.com](https://neo3-preview.com/) (community supported).  
-
-If you are looking use Neo with real assets, find your prefered wallet [here](https://neo.org/wallets).
 
 ## Status
 <p>
@@ -302,18 +247,26 @@ If you are looking use Neo with real assets, find your prefered wallet [here](ht
 </p>
 
 
-#### Reference implementation
-Neo 
+#### Reference implementations
+Code references are provided for all platform building blocks. Tha includes the base library, the VM, a command line application and the compiler. Plugins are also included to easily extend Neo functinalities.
 
-* [neo](https://github.com/neo-project/neo/tree/master-2.x): Neo core library.
-* [neo-vm](https://github.com/neo-project/neo-vm/tree/master-2.x): N
-* [neo-cli](https://github.com/neo-project/neo-cli/tree/master-2.x): 
-* [neo-plugins](https://github.com/neo-project/neo-plugins/tree/master-2.x): 
-* [neo-devpack-dotnet](https://github.com/neo-project/neo-devpack-dotnet/tree/master-2.x): 
+* [**neo:**](https://github.com/neo-project/neo/tree/) Neo core library, contains base classes, including ledger, p2p and IO modules.
+* [neo-vm:](https://github.com/neo-project/neo-vm/) Neo Virtual Machine is a decoupled VM that Neo uses to execute its scripts. It also uses the `InteropService` layer to extend its functionalities.
+* [neo-cli:](https://github.com/neo-project/neo-cli/) Neo Command Line Interface is an executable that allows you to run a Neo node using the command line. 
+* [neo-plugins:](https://github.com/neo-project/neo-plugins/) Neo plugin system is the default way to extend neo features. If a feature is not mandatory for Neo functionality, it will probably be implemented as a Plugin.
+* [neo-devpack-dotnet:](https://github.com/neo-project/neo-devpack-dotnet/) These are the official tools used to convert a C# smart-contract into a *neo executable file*.
 
+#### Opening a new issue
+Please feel free to create new issues in our repository. We encourage you to use one of our issue templates when creating a new issue.  
 
-If you find issues with your current OS, [please open an issue](https://github.com/neo-project/neo/issues/new/choose) or use one of our [docker images](https://hub.docker.com/u/neofoundation) instead.
+- [Feature request](https://github.com/neo-project/neo/issues/new?assignees=&labels=&template=bug_report.md&title=)
+- [Bug report](https://github.com/neo-project/neo/issues/new?assignees=&labels=&template=bug_report.md&title=)
+- [Questions](https://github.com/neo-project/neo/issues/new?assignees=&labels=question&template=questions.md&title=)
 
+If you found a security issue, please refer to our [security policy](https://github.com/neo-project/neo/security/policy).
 
+#### Bounty program
+You can be rewarded by finding security issues. Please refer to our [bounty program page](https://neo.org/bounty) for more information.
 
+#### License
 The NEO project is licensed under the [MIT license](LICENSE).
