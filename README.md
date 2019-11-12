@@ -88,23 +88,13 @@
 2. [Quickstart](#quick-start)
     1. [Using for smart-contract development](#building-a-smart-contract)
     1. [Using neo library](#using-neo-library)
-    <!-- 1. [Using with Unity]() -->
     3. [Using neo-cli releases](#using-neo-cli-releases)
-    <!-- 3. [Using docker](#third-example)
-    3. [Using plugins]()
-    3. [Writing a plugin](#third-example)
-    3. [Running a single node blockchain]() -->
 4. [Status](#status)
-    <!-- 1. [Repository status]()
-    2. [Development progress]() -->
 5. [Reference implementations](#reference-implementations)
-    <!-- 1. [Differences between Neo 2 and Neo 3](#fourth-examplehttpwwwfourthexamplecom)
-    3. [Neo 3 Explorer](#explorer)
-    3. [Daily builds](#daily-builds) -->
 6. [Opening an issue](#opening-a-new-issue)  
-7. [Bounty program](#bounty-program)
-7. [Articles and blogs](#fourth-examplehttpwwwfourthexamplecom)
-7. [How to contribute](#fourth-examplehttpwwwfourthexamplecom)
+8. [Bounty program](#bounty-program)
+9. [Articles and blogs](#fourth-examplehttpwwwfourthexamplecom)
+10. [How to contribute](#fourth-examplehttpwwwfourthexamplecom)
 
 ## Overview
 Neo is a blockchain technology built using C# that levereages smart contracts to autonomumously manage digital assets. Using dBFT 2.0 as consensus mechanism, Neo can achieves single block finality in 15 seconds without forking.   
@@ -126,8 +116,8 @@ These are a few features Neo has:
   - Python, Typescript and Go Smart Contracts provided by community projects.
 - **[Unity support](https://github.com/neo-ngd/NEO3-Development-Guide/tree/master/en/SmartContract)**
   - Neo can be used to create your game in the blockchain.
-- **[Debugger support]()**
-  - Breakpoints, variable and storage inspection using Visual Studio Code.
+- **[Neo Blockchain Toolkit for .NET]()**
+  - Developer tools, supporting easy smart-contract development with debugging support using Visual Studio Code.
 - **[Plugin system]()**
   - Used to extend Neo functinalities, the plugin system allow developers to easily add new features to their nodes.
 - **[Native contracts](https://medium.com/neo-smart-economy/native-contracts-in-neo-3-0-e786100abf6e)**
@@ -150,6 +140,7 @@ Neo reference implementation offers C# smart-contract support. The code is first
 
 *Suggestion: Please visit [Neo Blockchain Toolbox](https://github.com/neo-project/neo-blockchain-toolkit) for a complete setup.*
 
+### Using source code
 1. Clone https://github.com/neo-project/neo-devpack-dotnet  
 2.  Create a new .NET class library solution for your smart-contract.  
 3.  Open the project and add   `Neo.SmartContract.Framework.csproj` and `Neo.Compiler.MSIL.csproj` to your solution (inside repo from step 1).   
@@ -223,13 +214,13 @@ You can also compile LevelDB from [source](https://github.com/google/leveldb) an
     ```
     <!-- *Check out our [Dockerhub]() for more linux examples.* -->
 
-6. Use the RPC Client:
+<!-- 6. Use the RPC Client:
     ```CSharp
     var rpcClient = new RpcClient("http://seed1t.neo.org:20332");
     var block = rpcClient.GetBlock(0);
     Console.WriteLine("Block: " + block.Block.Hash);
-    ```
-2. (Optional) Run a local node:  
+    ``` -->
+<!-- 2. (Optional) Run a local node:  
     You can use plugins for the most common use cases. If you think we need to add a new plugin please [open a new issue]().
     ```CSharp
     private void Start()
@@ -246,7 +237,7 @@ You can also compile LevelDB from [source](https://github.com/google/leveldb) an
         });
     }
     ```
-    *Visit [neo-cli]() for more code examples.*
+    *Visit [neo-cli]() for more code examples.* -->
 
 #### Using neo-cli releases
 Neo-cli is a full node with wallet capabilities. It also supports RPC endpoints allowing it to be managed remotely.  
